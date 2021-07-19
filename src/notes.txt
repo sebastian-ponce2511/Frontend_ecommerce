@@ -1,0 +1,54 @@
+* Las funciones en React siempre van fuera del return, generalmente se ubican arriba del return
+
+* Ej: En vez de hacer:
+
+    <button onClick={() => sendForm()}>Enviar</button>
+
+Es conveniente:
+
+    <button onClick={sendForm}>Enviar</button>
+
+Ya que en el primer caso, se hace referencia a la función que llama a la función sendForm.
+En el segundo caso, se hace referencia a la función directamente
+
+* Si se trata de un fomrulario, en vez de llamar a la función mediante "onClick" también se puede
+hacer en la etiqueta del formulario. Ej:
+
+<form method="POST" action="/products" noValidate autoComplete="off" onSubmit={sendForm}>
+
+* Pasar un parámetro para ver el console.log de una función que se está ejecutando
+
+    function sendForm(e){...
+        console.log(e)
+
+* UseState:
+
+    data: lee los elementos del array desde la posición 0. setData los modifica
+
+    let [data, setData] = useState({
+        title: null,
+        description: null,
+        price: null,
+        stock: 1,
+        model: null,
+        brand: null,
+        seller_id: null
+    })
+
+    function handleInput(e){                   <---- Funcion que se encarga de manejar la entrada de datos
+
+        let inputName = e.target.name <-- Creamos una variable para establecer lo que se va a tomar de los campos, que sea dinamico
+
+        setData({  <--- A setData le pasamos lo que hay actualmente en useState, en este caso es un objeto
+
+            ...data, <-- Se copia todo lo que este actualmente en data (los elementos del objeto)
+
+            [inputName]: e.target.value     <---- Se accede al valor del input (lo que se escribe) entre [] para que tome el valor de la variable
+        })
+    }
+
+    En el evento onInput le voy a decir que cuando el usuario ingresa datos a este input, que llame a esta funcion (handleInput) para que la funcion se encarge de modificar ese dato (data.title, x ej)
+ 
+    <input type="text" name="title" value={data.title} onInput={handleInput}/>
+
+    Cada vez que se escribe en los campos, se va llamando al evento

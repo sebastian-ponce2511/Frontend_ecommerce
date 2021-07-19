@@ -1,24 +1,63 @@
-import logo from './logo.svg';
+
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch, //decide que componente se renderiza   
+} from "react-router-dom";
+import ProductForm from './ProductForm.js'
+import RegisterForm from './RegisterForm';
+import LoginForm from './LoginForm';
+import ProfileForm from './ProfileForm';
+import CategoryForm from './CategoryForm';
+import BrandForm from './BrandForm';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+
+      <Switch>
+
+        <Route path ="/products/create">
+    
+          < ProductForm/>
+
+        </Route>
+
+        <Route path ="/register">
+    
+          < RegisterForm/>
+
+        </Route>
+
+        <Route path ="/login">
+    
+          < LoginForm/>
+
+        </Route>
+
+        <Route path ="/profiles/create">
+    
+          < ProfileForm/>
+
+        </Route>
+
+        <Route path ="/categories/create">
+    
+          < CategoryForm/>
+
+        </Route>
+
+        <Route path ="/brands/create">
+    
+          < BrandForm/>
+
+        </Route>
+
+      </Switch>
+
+    </Router>
+    
   );
 }
 
